@@ -1,0 +1,142 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - drop_duplicates
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: load_customer_data
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_customer_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - drop_duplicates
+  - bar_chart_for_load_categories_data_1676683511412
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: load_categories_data
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_categories_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - drop_duplicates
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: load_product_data
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_product_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - drop_duplicates
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: load_departments
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_departments
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - drop_duplicates
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: load_orders_data
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_orders_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - drop_duplicates
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: load_orders_list_data
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_orders_list_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - export_data_into_snowflake
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: drop_duplicates
+  status: executed
+  type: transformer
+  upstream_blocks:
+  - load_categories_data
+  - load_customer_data
+  - load_product_data
+  - load_departments
+  - load_orders_data
+  - load_orders_list_data
+  uuid: drop_duplicates
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: export_data_into_snowflake
+  status: executed
+  type: data_exporter
+  upstream_blocks:
+  - drop_duplicates
+  uuid: export_data_into_snowflake
+data_integration: null
+name: retail_pipeline
+type: python
+uuid: retail_pipeline
+widgets:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    buckets: '7'
+    chart_style: vertical
+    chart_type: bar chart
+    group_by:
+    - category_name
+    metrics:
+    - aggregation: count
+      column: category_name
+    width_percentage: '1'
+    x: x
+    y: y
+    y_sort_order: descending
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: bar chart for load_categories_data 1676683511412
+  status: executed
+  type: chart
+  upstream_blocks:
+  - load_categories_data
+  uuid: bar_chart_for_load_categories_data_1676683511412
